@@ -1,0 +1,191 @@
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #ebebeb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Container for centering */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Calculator container with iOS-style border and shadow */
+.calculator {
+    width: 375px;
+    background-color: #000;
+    border-radius: 30px;
+    padding: 20px;
+    box-shadow: 
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid #333;
+}
+
+/* Display styling with overflow protection */
+.display {
+    color: white;
+    text-align: right;
+    padding: 30px 20px 20px 20px;
+    height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+}
+
+/* Current operand with automatic font scaling */
+.current-operand {
+    font-size: 5rem;
+    font-weight: 300;
+    line-height: 1;
+    margin-bottom: 5px;
+    word-break: break-all;
+    overflow-wrap: break-word;
+    min-height: 60px;
+    max-height: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+/* Previous operand styling */
+.previous-operand {
+    font-size: 1.4rem;
+    color: #a5a5a5;
+    min-height: 1.8rem;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Buttons grid */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 10px 0;
+}
+
+/* Button base styling */
+.btn {
+    border: none;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Button hover and active states */
+.btn:hover {
+    filter: brightness(120%);
+}
+
+.btn:active {
+    transform: scale(0.95);
+    filter: brightness(140%);
+}
+
+/* Dark gray buttons (numbers) */
+.dark-gray { 
+    background-color: #333333; 
+    color: white; 
+}
+
+.dark-gray:active {
+    background-color: #404040;
+}
+
+/* Light gray buttons (AC, +/-, %) */
+.light-gray { 
+    background-color: #a5a5a5; 
+    color: black; 
+}
+
+.light-gray:active {
+    background-color: #bfbfbf;
+}
+
+/* Orange buttons (operators) */
+.orange { 
+    background-color: #ff9f0a; 
+    color: white; 
+    font-size: 2.2rem;
+}
+
+.orange:active {
+    background-color: #ffb340;
+}
+
+/* Active operator styling */
+.orange.active {
+    background-color: white;
+    color: #ff9f0a;
+}
+
+/* Double width button for zero */
+.double-width {
+    width: 162px;
+    border-radius: 40px;
+    grid-column: span 2;
+    text-align: left;
+    padding-left: 30px;
+    justify-content: flex-start;
+}
+
+/* Responsive adjustments */
+@media (max-width: 400px) {
+    .calculator {
+        width: 320px;
+        padding: 15px;
+    }
+    
+    .btn {
+        height: 70px;
+        width: 70px;
+        font-size: 1.7rem;
+    }
+    
+    .double-width {
+        width: 152px;
+    }
+    
+    .current-operand {
+        font-size: 4rem;
+    }
+}
+
+/* Animation for button press */
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.92); }
+    100% { transform: scale(1); }
+}
+
+.btn.pressed {
+    animation: buttonPress 0.2s ease;
+}
